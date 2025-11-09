@@ -59,7 +59,7 @@ const Allcars = () => {
 
   return (
     <div className="bg-[#00162b]">
-      <div className='container mx-auto py-16'>
+      <div className='container mx-auto py-16 px-4'>
         {/* Header with Navigation */}
         <div className='mb-8 flex items-center justify-between'>
           <h1 className='font-extrabold text-white text-6xl'>All Cars</h1>
@@ -97,7 +97,7 @@ const Allcars = () => {
         <div className="relative h-[560px] overflow-hidden">
           {/* Background Text Layer */}
           <div className="absolute inset-x-0 top-0 flex items-center justify-start pointer-events-none">
-            <h1 className="select-none leading-none font-extrabold text-white text-[480px]">
+            <h1 className="select-none leading-none font-extrabold text-white text-[380px] xl:text-[480px]">
               RB<span className="text-[#db0a40]">{currentCar.number}</span>
             </h1>
           </div>
@@ -113,7 +113,7 @@ const Allcars = () => {
 
           {/* Overlay Text with 15% Opacity - Above Car */}
           <div className="absolute inset-x-0 top-0 z-20 flex items-center justify-start pointer-events-none">
-            <h1 className="select-none leading-none font-extrabold text-white opacity-15 text-[480px]">
+            <h1 className="select-none leading-none font-extrabold text-white opacity-15 text-[380px] xl:text-[480px]">
               RB<span className="text-[#db0a40]">{currentCar.number}</span>
             </h1>
           </div>
