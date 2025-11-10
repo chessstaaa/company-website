@@ -1,5 +1,4 @@
 import ShopFooter from '@/app/shop/components/ShopFooter'
-import Navbar from '@/components/Navbar'
 import ProductsCarousel from '@/app/shop/components/ProductsCarousel'
 import { Button } from "@/components/ui/button"
 import React from 'react'
@@ -7,6 +6,7 @@ import NewArrivals from './components/NewArrivals'
 import SponsorShop from './components/SponsorShop'
 import MainHeaderShop from './components/MainHeaderShop'
 import SecondHeaderShop from './components/SecondHeaderShop'
+import NavbarShop from './components/NavbarShop'
 
 const page = () => {
   const mainProductItems: {title: string, type: string, images: string[], price: string, productLink?: string }[] = [
@@ -80,7 +80,7 @@ const page = () => {
   
   return (
     <div className='bg-[#00162b]'>
-        < Navbar />
+        < NavbarShop />
         < MainHeaderShop />
 
 

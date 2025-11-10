@@ -24,6 +24,9 @@ const Navbar = () => {
                     <a href="/team" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Team</a>
                     <a href="/cars" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Cars</a>
                     <a href="/shop" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Shop</a>
+                    <Link href="/auth/signup">
+                        <Button className='bg-[#1a2e41] text-white rounded-full hover:bg-[#334555]'>Sign Up</Button>
+                    </Link>
                 </div>
 
                 <div className='sm:hidden' onClick={toggleMenu}>
@@ -37,6 +40,15 @@ const Navbar = () => {
             {isMenuOpen && (
                 <div className="px-4 py-4 sm:hidden bg-[#00162b] border-t-2 border-[#db0a40] animate-slide-down">
                     <div className="flex flex-col space-y-4">
+                        <Link href="/auth/signup" onClick={closeMenu}>
+                            <Button className="bg-[#1a2e41] text-white rounded-full hover:bg-[#334555] w-full">Sign Up</Button>
+                        </Link>
+                        <Link href="/auth/signin" onClick={closeMenu}>
+                            <Button className="bg-[#1a2e41] text-white rounded-full hover:bg-[#334555] w-full">Sign In</Button>
+                        </Link>
+                    </div>
+                    <hr className="mt-4 border-[#db0a40] border" />
+                    <div className="flex flex-col mt-4 space-y-4">
                         <a href="/" onClick={closeMenu} className="text-white font-semibold hover:text-[#db0a40]">Home</a>
                         <a href="/team" onClick={closeMenu} className="text-white font-semibold hover:text-[#db0a40]">Team</a>
                         <a href="/cars" onClick={closeMenu} className="text-white font-semibold hover:text-[#db0a40]">Cars</a>

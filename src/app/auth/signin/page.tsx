@@ -3,58 +3,35 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
-export default function SignUpPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+export default function SignInPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
+    console.log({ email, password })
   }
 
   return (
-    // bg-[url('/imgAssets/team/main-header.avif')]
     <div className="min-h-screen bg-[#00162b] flex items-center justify-center px-4">
       <div className="bg-[#0a1931] rounded-2xl shadow-xl w-full max-w-md p-8 border border-[#db0a40]/40">
         <h1 className="text-3xl font-bold text-white text-center mb-6">
-          Create Account
+          Welcome Back
         </h1>
         <p className="text-gray-300 text-center mb-8">
-          Join the Red Bull Racing community
+          Sign in to your Red Bull Racing account
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Full Name
-            </label>
-            <input
-              name="name"
-              required
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg bg-[#0f223f] text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#db0a40]"
-              placeholder="Full name"
-            />
-          </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Email
             </label>
             <input
               type="email"
-              name="email"
               required
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-[#0f223f] text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#db0a40]"
               placeholder="you@example.com"
             />
@@ -66,10 +43,9 @@ export default function SignUpPage() {
             </label>
             <input
               type="password"
-              name="password"
               required
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-[#0f223f] text-white placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#db0a40]"
               placeholder="********"
             />
@@ -79,17 +55,17 @@ export default function SignUpPage() {
             type="submit"
             className="w-full py-3 bg-[#db0a40] hover:bg-[#c3093b] transition-all text-white font-semibold rounded-lg shadow-md"
           >
-            Sign Up
+            Sign In
           </button>
         </form>
 
         <p className="text-center text-gray-400 text-sm mt-6">
-          Already have an account?{' '}
+          Don’t have an account?{' '}
           <Link
-            href="/auth/signin"
+            href="/auth/signup"
             className="text-[#ffd700] hover:underline font-semibold"
           >
-            Sign In
+            Sign Up
           </Link>
         </p>
       </div>
