@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import React from 'react'
 import NewArrivals from './components/NewArrivals'
 import SponsorShop from './components/SponsorShop'
+import MainHeaderShop from './components/MainHeaderShop'
+import SecondHeaderShop from './components/SecondHeaderShop'
 
 const page = () => {
   const mainProductItems: {title: string, type: string, images: string[], price: string, productLink?: string }[] = [
@@ -78,35 +80,17 @@ const page = () => {
   
   return (
     <div className='bg-[#00162b]'>
-        <Navbar />
-        <div className='relative overflow-hidden'>
-          <img src="/imgAssets/shop/header-shop.jpg" alt="header" className='w-full h-full object-cover' />
+        < Navbar />
+        < MainHeaderShop />
 
-          <div className="absolute inset-0 bg-linear-to-t from-[#00162b] via-black/10 to-transparent"></div>
-
-          <div className='absolute inset-0 flex flex-col justify-end container mx-auto gap-4 pb-10'>
-            <h1 className='text-5xl font-bold text-white'>Brazilian GP Caps</h1>
-            <Button size='lg' className='bg-[#db0a40] text-white text-lg rounded-full w-fit hover:bg-[#334555]'>Buy Now</Button>
-          </div>
-        </div>
 
         <div className='container mx-auto'>
-          <div className='py-10'>
+          <div className='py-10 px-4'>
             <ProductsCarousel products={mainProductItems} itemsPerPage={4} />
           </div>
         </div>
 
-        <div className='relative overflow-hidden'>
-          <img src="/imgAssets/shop/second-header-shop.avif" alt="header" className='w-full h-[420px] object-cover object-[100%_5%]' />
-
-          <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent"></div>
-
-          <div className='absolute inset-0 flex flex-col justify-end container mx-auto gap-4 pb-10'>
-            <h1 className='text-4xl font-bold text-white'>2025 Collection</h1>
-            <Button size='lg' className='bg-[#db0a40] text-white text-lg rounded-full w-fit hover:bg-[#334555]'>Discover Now</Button>
-          </div>
-        </div>
-
+        <SecondHeaderShop />
         <NewArrivals />
         <SponsorShop />
 

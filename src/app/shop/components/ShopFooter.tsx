@@ -4,8 +4,8 @@ import { FaRegCopyright } from "react-icons/fa";
 const Footer = () => {
   return (
     <div className='bg-[#00162b] border-t-2 border-[#db0a40] font-poppins'>
-      <div className='container mx-auto py-10'>
-        <div className='flex items-center justify-between'>
+      <div className='container mx-auto py-10 px-4'>
+        <div className='flex flex-col gap-10 sm:flex-row sm:items-center sm:justify-between'>
           <div className='flex flex-col gap-4'>
             <a href="#" className='text-white font-semibold hover:text-[#99a2aa]'>Privacy Policy</a>
             <a href="#" className='text-white font-semibold hover:text-[#99a2aa]'>Terms of Service</a>

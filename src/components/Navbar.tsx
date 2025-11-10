@@ -24,7 +24,7 @@ const Navbar = () => {
                     <a href="/team" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Team</a>
                     <a href="/cars" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Cars</a>
                     <a href="/shop" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Shop</a>
-                    <Link href="/Sign-up">
+                    <Link href="/auth/signup">
                         <Button className='bg-[#1a2e41] text-white rounded-full hover:bg-[#334555]'>Sign Up</Button>
                     </Link>
                 </div>
@@ -39,7 +39,7 @@ const Navbar = () => {
 
             {isMenuOpen && (
                 <div className="px-4 py-4 sm:hidden bg-[#00162b] border-t-2 border-[#db0a40] animate-slide-down">
-                    <Link href="/Sign-up" onClick={closeMenu}>
+                    <Link href="/auth/signup" onClick={closeMenu}>
                         <Button className="bg-[#1a2e41] text-white rounded-full hover:bg-[#334555] w-full">Sign Up</Button>
                     </Link>
                     <hr className="mt-4 border-[#db0a40] border" />

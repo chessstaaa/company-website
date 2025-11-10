@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import ProductCard from '@/app/shop/components/MainProductCard'
 
@@ -19,26 +19,38 @@ interface Props {
 
 const ProductsCarousel = ({ products, itemsPerPage = 4, title }: Props) => {
   const [curr, setCurr] = useState(0)
-  const totalPages = Math.ceil(products.length / itemsPerPage)
+  const [perPage, setPerPage] = useState(itemsPerPage)
+
+  // 🔧 Responsive adjustment
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      if (window.innerWidth < 640) setPerPage(1) // sm
+      else if (window.innerWidth < 1024) setPerPage(2) // md–lg
+      else setPerPage(itemsPerPage) // default (4)
+    }
+
+    updateItemsPerPage()
+    window.addEventListener('resize', updateItemsPerPage)
+    return () => window.removeEventListener('resize', updateItemsPerPage)
+  }, [itemsPerPage])
+
+  const totalPages = Math.ceil(products.length / perPage)
 
   const prev = () => {
-    if (curr > 0) {
-      setCurr(curr - 1)
-    }
+    if (curr > 0) setCurr(curr - 1)
   }
 
   const next = () => {
-    if (curr < totalPages - 1) {
-      setCurr(curr + 1)
-    }
+    if (curr < totalPages - 1) setCurr(curr + 1)
   }
 
   return (
     <div>
-      {/* Header with Title and Navigation */}
       <div className='flex items-center justify-between mb-10'>
-        <h1 className='text-white text-4xl font-bold'>2025 Collection</h1>
-        
+        <h1 className='text-white text-4xl font-bold'>
+          {title || '2025 Collection'}
+        </h1>
+
         {totalPages > 1 && (
           <div className="flex items-center gap-4">
             <button
@@ -64,23 +76,23 @@ const ProductsCarousel = ({ products, itemsPerPage = 4, title }: Props) => {
         )}
       </div>
 
-      {/* Products Grid with Animation */}
       <div className="overflow-hidden">
         <div 
           className="flex transition-transform duration-500 ease-out"
           style={{ transform: `translateX(-${curr * 100}%)` }}
         >
-          {/* Group products into pages */}
           {Array.from({ length: totalPages }).map((_, pageIndex) => (
             <div 
               key={pageIndex} 
-              className="grid grid-cols-4 gap-4 min-w-full"
+              className={`grid gap-4 min-w-full ${
+                perPage === 1 ? 'grid-cols-1' : perPage === 2 ? 'grid-cols-2' : 'grid-cols-4'
+              }`}
             >
               {products
-                .slice(pageIndex * itemsPerPage, (pageIndex + 1) * itemsPerPage)
+                .slice(pageIndex * perPage, (pageIndex + 1) * perPage)
                 .map((item, index) => (
                   <ProductCard
-                    key={pageIndex * itemsPerPage + index}
+                    key={pageIndex * perPage + index}
                     title={item.title}
                     type={item.type}
                     price={item.price}
