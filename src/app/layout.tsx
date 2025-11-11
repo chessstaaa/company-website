@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { poppins } from "@/utils/font";
+import {Toaster} from "react-hot-toast";
+
 
 export const metadata: Metadata = {
   title: "Oracle Red Bull Racing",
@@ -19,6 +21,7 @@ export default function RootLayout({
         className={`${poppins.variable} antialiased`}
       >
         {children}
+        <Toaster position="top-right" reverseOrder={false}/>
       </body>
     </html>
   );
