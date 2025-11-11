@@ -155,8 +155,6 @@ const ProductPage = () => {
               <li>Rest of the world: €30 (3–8 days)</li>
             </ul>
           </div>
-
-          < ReviewWrite/>
         </div>
       </div>
     </div>

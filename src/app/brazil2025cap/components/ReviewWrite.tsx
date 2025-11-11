@@ -52,105 +52,109 @@ const ReviewWrite = () => {
     };
 
     return (
-        <div className="mt-12 border-t border-gray-300 pt-8">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                Write a Review
-            </h2>
+        <div className='bg-white'>
+            <div className='container mx-auto px-4'>
+                <div className="mt-12 border-t border-gray-300 pt-8">
+                    <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                        Write a Review
+                    </h2>
 
-            <form id="form-write" onSubmit={form.handleSubmit(onSubmit)}>
-                <FieldGroup className="space-y-5">
-                    {/* Name */}
-                    <Controller
-                        name="name"
-                        control={form.control}
-                        render={({ field, fieldState }) => (
-                            <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor="name">Full Name</FieldLabel>
-                                <Input
-                                    {...field}
-                                    id="name"
-                                    placeholder="Your full name"
-                                    className="bg-white border border-gray-300 text-gray-800 placeholder-gray-400
+                    <form id="form-write" onSubmit={form.handleSubmit(onSubmit)}>
+                        <FieldGroup className="space-y-5">
+                            {/* Name */}
+                            <Controller
+                                name="name"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field data-invalid={fieldState.invalid}>
+                                        <FieldLabel htmlFor="name">Full Name</FieldLabel>
+                                        <Input
+                                            {...field}
+                                            id="name"
+                                            placeholder="Your full name"
+                                            className="bg-white border border-gray-300 text-gray-800 placeholder-gray-400
                              focus:ring-2 focus:ring-[#db0a40] rounded-md"
-                                />
-                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                            </Field>
-                        )}
-                    />
+                                        />
+                                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                    </Field>
+                                )}
+                            />
 
-                    {/* Product Name */}
-                    <Controller
-                        name="productName"
-                        control={form.control}
-                        render={({ field, fieldState }) => (
-                            <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor="productName">Product Name</FieldLabel>
-                                <Input
-                                    {...field}
-                                    id="productName"
-                                    placeholder="Product name"
-                                    className="bg-white border border-gray-300 text-gray-800 placeholder-gray-400
+                            {/* Product Name */}
+                            <Controller
+                                name="productName"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field data-invalid={fieldState.invalid}>
+                                        <FieldLabel htmlFor="productName">Product Name</FieldLabel>
+                                        <Input
+                                            {...field}
+                                            id="productName"
+                                            placeholder="Product name"
+                                            className="bg-white border border-gray-300 text-gray-800 placeholder-gray-400
                              focus:ring-2 focus:ring-[#db0a40] rounded-md"
-                                />
-                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                            </Field>
-                        )}
-                    />
+                                        />
+                                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                    </Field>
+                                )}
+                            />
 
-                    {/* Rating */}
-                    <Controller
-                        name="rating"
-                        control={form.control}
-                        render={({ field, fieldState }) => (
-                            <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor="rating">Rating (1–5)</FieldLabel>
-                                <Input
-                                    {...field}
-                                    id="rating"
-                                    type="number"
-                                    min={1}
-                                    max={5}
-                                    onChange={(e) => field.onChange(Number(e.target.value))}
-                                    className="bg-white border border-gray-300 text-gray-800 placeholder-gray-400
+                            {/* Rating */}
+                            <Controller
+                                name="rating"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field data-invalid={fieldState.invalid}>
+                                        <FieldLabel htmlFor="rating">Rating (1–5)</FieldLabel>
+                                        <Input
+                                            {...field}
+                                            id="rating"
+                                            type="number"
+                                            min={1}
+                                            max={5}
+                                            onChange={(e) => field.onChange(Number(e.target.value))}
+                                            className="bg-white border border-gray-300 text-gray-800 placeholder-gray-400
                              focus:ring-2 focus:ring-[#db0a40] rounded-md"
-                                />
-                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                            </Field>
-                        )}
-                    />
+                                        />
+                                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                    </Field>
+                                )}
+                            />
 
-                    {/* Description */}
-                    <Controller
-                        name="reviewDesc"
-                        control={form.control}
-                        render={({ field, fieldState }) => (
-                            <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor="reviewDesc">Description</FieldLabel>
-                                <Textarea
-                                    {...field}
-                                    id="reviewDesc"
-                                    placeholder="Write your review here..."
-                                    className="bg-white border border-gray-300 text-gray-800 placeholder-gray-400
+                            {/* Description */}
+                            <Controller
+                                name="reviewDesc"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field data-invalid={fieldState.invalid}>
+                                        <FieldLabel htmlFor="reviewDesc">Description</FieldLabel>
+                                        <Textarea
+                                            {...field}
+                                            id="reviewDesc"
+                                            placeholder="Write your review here..."
+                                            className="bg-white border border-gray-300 text-gray-800 placeholder-gray-400
                              focus:ring-2 focus:ring-[#db0a40] rounded-md h-28"
-                                />
-                                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                            </Field>
-                        )}
-                    />
+                                        />
+                                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                    </Field>
+                                )}
+                            />
 
-                    {/* Submit */}
-                    <Field>
-                        <Button
-                            type="submit"
-                            disabled={isLoading}
-                            className="w-full bg-[#db0a40] hover:bg-[#ff003c] text-white font-semibold py-3
+                            {/* Submit */}
+                            <Field>
+                                <Button
+                                    type="submit"
+                                    disabled={isLoading}
+                                    className="w-full bg-[#db0a40] hover:bg-[#ff003c] text-white font-semibold py-3
                          rounded-md shadow-md hover:shadow-lg transition-all duration-200"
-                        >
-                            {isLoading ? 'Submitting...' : 'Submit Review'}
-                        </Button>
-                    </Field>
-                </FieldGroup>
-            </form>
+                                >
+                                    {isLoading ? 'Submitting...' : 'Submit Review'}
+                                </Button>
+                            </Field>
+                        </FieldGroup>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 };

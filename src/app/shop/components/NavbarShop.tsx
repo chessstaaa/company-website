@@ -5,10 +5,13 @@ import { Button } from "@/components/ui/button"
 import { IoMenu, IoClose } from "react-icons/io5";
 import Link from 'next/link'
 import { useAuth } from '@/stores/auth';
+import { signOut, useSession } from 'next-auth/react';
 
 const Navbar = () => {
 
     const { user, clearAuth } = useAuth();
+    const session = useSession();
+
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -27,13 +30,13 @@ const Navbar = () => {
                     <a href="/team" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Team</a>
                     <a href="/cars" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Cars</a>
                     <a href="/shop" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Shop</a>
-                    {!user ?
+                    {session.status === "unauthenticated" ?
                         <Link href="/signin">
                             <Button className='bg-[#1a2e41] text-white rounded-full hover:bg-[#334555]'>Sign In</Button>
                         </Link>
                         :
                         <Button className='bg-[#1a2e41] text-white rounded-full hover:bg-[#334555]'
-                            onClick={clearAuth}
+                            onClick={() => signOut()}
                         >Sign Out</Button>
                     }
                 </div>

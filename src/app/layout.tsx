@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { poppins } from "@/utils/font";
-import {Toaster} from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { SessionProvider } from "next-auth/react"
 
 
 export const metadata: Metadata = {
@@ -20,8 +21,8 @@ export default function RootLayout({
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         className={`${poppins.variable} antialiased`}
       >
-        {children}
-        <Toaster position="top-right" reverseOrder={false}/>
+        < SessionProvider>{children}</SessionProvider>
+        <Toaster position="top-right" reverseOrder={false} />
       </body>
     </html>
   );

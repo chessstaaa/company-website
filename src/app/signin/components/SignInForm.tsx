@@ -25,6 +25,7 @@ import { Controller, useForm } from "react-hook-form";
 import type { Resolver } from 'react-hook-form';
 import toast from "react-hot-toast";
 import { useAuth } from "@/stores/auth";
+import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
     email: z.string().email("Invalid email"),
@@ -36,7 +37,7 @@ export function LoginForm({
     ...props
 }: React.ComponentProps<"div">) {
 
-    const { onAuthSuccess } = useAuth();
+    // const { onAuthSuccess } = useAuth();
     const router = useRouter();
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -56,12 +57,19 @@ export function LoginForm({
                 { login: data.email, password: data.password }
             );
 
-            onAuthSuccess({
-                user: {
-                    email: result.data.email,
-                    objectID: result.data.objectID,
-                    userToken: result.data["user-token"],
-                },
+            // onAuthSuccess({
+            //     user: {
+            //         email: result.data.email,
+            //         objectID: result.data.objectID,
+            //         userToken: result.data["user-token"],
+            //     },
+            // });
+
+            await signIn("credentials", {
+                email: result.data.email,
+                objectID: result.data.objectID,
+                userToken: result.data["user-token"],
+                redirect: false,
             });
 
             toast.success("Login success!");
