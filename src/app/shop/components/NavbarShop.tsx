@@ -4,8 +4,11 @@ import React from 'react'
 import { Button } from "@/components/ui/button"
 import { IoMenu, IoClose } from "react-icons/io5";
 import Link from 'next/link'
+import { useAuth } from '@/stores/auth';
 
 const Navbar = () => {
+
+    const { user, clearAuth } = useAuth();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -24,9 +27,15 @@ const Navbar = () => {
                     <a href="/team" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Team</a>
                     <a href="/cars" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Cars</a>
                     <a href="/shop" className='font-bold text-white hover:underline underline-offset-8 decoration-3 decoration-[#db0a40]'>Shop</a>
-                    <Link href="/auth/signup">
-                        <Button className='bg-[#1a2e41] text-white rounded-full hover:bg-[#334555]'>Sign Up</Button>
-                    </Link>
+                    {!user ?
+                        <Link href="/signin">
+                            <Button className='bg-[#1a2e41] text-white rounded-full hover:bg-[#334555]'>Sign In</Button>
+                        </Link>
+                        :
+                        <Button className='bg-[#1a2e41] text-white rounded-full hover:bg-[#334555]'
+                            onClick={clearAuth}
+                        >Sign Out</Button>
+                    }
                 </div>
 
                 <div className='sm:hidden' onClick={toggleMenu}>
@@ -40,10 +49,10 @@ const Navbar = () => {
             {isMenuOpen && (
                 <div className="px-4 py-4 sm:hidden bg-[#00162b] border-t-2 border-[#db0a40] animate-slide-down">
                     <div className="flex flex-col space-y-4">
-                        <Link href="/auth/signup" onClick={closeMenu}>
+                        <Link href="/signup" onClick={closeMenu}>
                             <Button className="bg-[#1a2e41] text-white rounded-full hover:bg-[#334555] w-full">Sign Up</Button>
                         </Link>
-                        <Link href="/auth/signin" onClick={closeMenu}>
+                        <Link href="/signin" onClick={closeMenu}>
                             <Button className="bg-[#1a2e41] text-white rounded-full hover:bg-[#334555] w-full">Sign In</Button>
                         </Link>
                     </div>

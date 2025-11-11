@@ -1,26 +1,51 @@
-import React from 'react'
-import { Review } from '@/types/review'
-import { Star } from 'lucide-react'
+'use client';
+import { Review } from '@/types/review';
+import { format } from 'date-fns';
+import React, { useState } from 'react';
 
-interface Props {
-  review: Review
+interface ReviewCardProps {
+    review: Review;
 }
 
-const ReviewCard = ({ review }: Props) => {
-  return (
-    <div className="bg-[#0a2540] border border-[#112b45] p-6 rounded-2xl shadow-md hover:shadow-lg hover:scale-[1.02] transition-all">
-      <h3 className="text-xl font-semibold mb-2 text-[#db0a40]">{review.productName}</h3>
-      <p className="text-gray-300 text-sm mb-4 italic">by {review.name}</p>
+const ReviewCard = (props: ReviewCardProps) => {
+    const [expanded, setExpanded] = useState(false);
 
-      <div className="flex items-center mb-3">
-        {Array.from({ length: review.rating }).map((_, i) => (
-          <Star key={i} size={18} className="text-yellow-400 fill-yellow-400" />
-        ))}
-      </div>
+    const handleToggle = () => {
+        setExpanded(!expanded);
+    };
 
-      <p className="text-gray-200 text-sm">{review.reviewDesc}</p>
-    </div>
-  )
-}
+    // Membuat array bintang
+    const renderStars = (rating: number) => {
+        const stars = [];
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                stars.push(<span key={i} className="text-yellow-400">★</span>);
+            } else {
+                stars.push(<span key={i} className="text-gray-300">★</span>);
+            }
+        }
+        return stars;
+    };
 
-export default ReviewCard
+    return (
+        <div className="bg-white border border-gray-200 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+            <h3 className="text-lg font-semibold text-gray-900">{props.review.name}</h3>
+            <div className="flex gap-2 items-center mb-1">
+                <div className="flex text-xl">
+                    {renderStars(props.review.rating)}
+                </div>
+                <p className='text-xs text-gray-500'>
+                    {format(new Date(props.review.created), "dd MMM yyyy")}
+                </p>
+            </div>
+            <p className="text-xs text-gray-500 mb-2">
+                <span className="font-medium text-gray-800">Product:</span> {props.review.productName}
+            </p>
+            <p className='text-gray-800 text-base line-clamp-3'>
+                {props.review.reviewDesc}
+            </p>
+        </div>
+    );
+};
+
+export default ReviewCard;

@@ -1,5 +1,6 @@
 import { User } from "@/types/user";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type Store = {
   user: User | null;
@@ -7,8 +8,15 @@ type Store = {
   clearAuth: () => void;
 };
 
-export const useAuth = create<Store>()((set) => ({
-  user: null,
-  onAuthSuccess: ({ user }) => set(() => ({ user: user })),
-  clearAuth: () => set(() => ({ user: null })),
-}));
+export const useAuth = create<Store>()(
+  persist(
+    (set) => ({
+      user: null,
+      onAuthSuccess: ({ user }) => set(() => ({ user: user })),
+      clearAuth: () => set(() => ({ user: null })),
+    }),
+    {
+      name: "review-store",
+    }
+  )
+);

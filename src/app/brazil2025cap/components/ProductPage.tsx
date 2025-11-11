@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { BiDetail } from "react-icons/bi";
 import { MdOutlineLocalGroceryStore } from "react-icons/md";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import ReviewWrite from "./ReviewWrite";
 
 const ProductPage = () => {
   const images = [
@@ -154,6 +155,8 @@ const ProductPage = () => {
               <li>Rest of the world: €30 (3–8 days)</li>
             </ul>
           </div>
+
+          < ReviewWrite/>
         </div>
       </div>
     </div>

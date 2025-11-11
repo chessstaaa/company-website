@@ -1,63 +1,40 @@
-'use client'
-import { Review } from '@/types/review'
-import { useEffect, useState } from 'react'
-import React from 'react'
-import axios from 'axios'
+'use client';
+import React, { useState, useEffect } from 'react'
 import ReviewCard from './ReviewCard'
+import axios from 'axios';
+import { Review } from '@/types/review';
 
 const ReviewBlog = () => {
-  const [reviews, setReviews] = useState<Review[]>([])
+  const [reviews, setReviews] = useState<Review[]>([]);
 
   const getReviews = async () => {
     try {
-      const result = await axios.get('https://tubularrake-us.backendless.app/api/data/Reviews')
-      setReviews(result.data)
+      const result = await axios.get(
+        "https://tubularrake-us.backendless.app/api/data/Reviews?sortBy=%60created%60%20desc",
+      );
+      setReviews(result.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    getReviews()
-  }, [])
+    getReviews();
+  }, []);
 
   return (
-    <div className="bg-blue-300 text-white">
-      <div className="container mx-auto py-10 px-4 border">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">Customer Reviews</h1>
-          <p className="text-gray-400 text-lg">
-            See what our fans think about the <span className="text-[#db0a40]">Red Bull Racing</span> products.
-          </p>
-        </div>
+    <div className='container mx-auto px-4 py-8 border-t-2'>
+      <h1 className='text-3xl font-bold mb-8'>
+        Our Reviews
+      </h1>
 
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reviews.map((review) => (
-            <ReviewCard key={review.objectId} review={review} />
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {reviews.length === 0 && (
-          <div className="text-center text-gray-400 mt-20">
-            <p>No reviews yet. Be the first to leave one!</p>
-          </div>
-        )}
-
-        {/* CTA */}
-        <div className="text-center mt-16">
-          <button
-            onClick={() => alert('Nanti diarahkan ke halaman tulis ulasan')}
-            className="bg-[#db0a40] hover:bg-[#c3093b] text-white px-8 py-3 rounded-full font-semibold shadow-lg transition-all"
-          >
-            Write a Review
-          </button>
-        </div>
+      <div className="grid grid-cols-3 gap-4">
+        {reviews.map((review) => {
+          return <ReviewCard key={review.objectId} review={review} />;
+        })}
       </div>
     </div>
   )
-}
 
+}
 export default ReviewBlog
